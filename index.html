@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>from the web https://stackoverflow.com/questions/47384219/reverse-background-position-animation-without-resetting</title>
+    <style>
+        span.my_anim {
+            animation: 10s 2 alternate my_move;
+        }
+
+        @keyframes my_move {
+            from {
+                margin-left: 0;
+            }
+            to {
+                margin-left: 50%;
+            }
+        }
+
+        button {
+            /*visibility: hidden;*/
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span class="my_anim">@</span>
+</div>
+<button>reverse</button>
+<script src="index.js"></script>
+</body>
+</html>
