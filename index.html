@@ -8,7 +8,8 @@
     <title>from the web https://stackoverflow.com/questions/47384219/reverse-background-position-animation-without-resetting</title>
     <style>
         span.my_anim {
-            animation: 10s 2 alternate my_move;
+            font-size: 54px;
+            animation: 3s 1 normal both my_move;
         }
 
         @keyframes my_move {
@@ -23,9 +24,12 @@
         button {
             /*visibility: hidden;*/
         }
-        #timeElapsedId {
+        #timerId {
             font-size: 24px;
             color: darkturquoise;
+            position: fixed;
+            bottom: 0;
+            left: 50%;
         }
     </style>
 </head>
@@ -34,7 +38,7 @@
     <span class="my_anim">@</span>
 </div>
 <button>reverse</button>
-<div id='timeElapsedId'></div>
+<span id="timerId"></span>
 <script src="index.js"></script>
 </body>
 </html>
