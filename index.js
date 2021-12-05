@@ -40,9 +40,9 @@ function replaceAnim(animationDirection) {
     span.classList.remove('my_anim');
     void span.offsetWidth;
     span.classList.add('my_anim');
-    const calculatedDelay = timeElapsed(startTime) // - 10
+    const calculatedDelay = animationDirection === 'alternate-reverse' ? timeElapsed(startTime) : 10 - timeElapsed(startTime)
     span.style.animationDelay = `-${calculatedDelay}s`;
-    span.style.animationDirection = animationDirection // 'alternate-reverse';
+    span.style.animationDirection = animationDirection
     span.style.animationPlayState = 'running';
 }
 
