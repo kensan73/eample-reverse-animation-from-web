@@ -14,6 +14,15 @@ isForward = () => {
     return timeElapsed(startTime) < 10;
 }
 
+isAlternate = () => {
+    // console.log('ISALTERNATEGCS: ' + window.getComputedStyle(span).animationDirection.toUpperCase())
+    return window.getComputedStyle(span).animationDirection.toUpperCase() === 'ALTERNATE';
+}
+
+isPhase1 = () => {
+    return timeElapsed(startTime) < 10
+}
+
 setInterval(() => {
     timeDiv.innerHTML = `${timeElapsed(startTime)}s`
 }, 500)
@@ -27,13 +36,13 @@ span.addEventListener('animationiteration', () => {
     console.log('isForward: ' + isForward())
 });
 
-function replaceAnim() {
+function replaceAnim(animationDirection) {
     span.classList.remove('my_anim');
     void span.offsetWidth;
     span.classList.add('my_anim');
-    const calculatedDelay = timeElapsed(startTime) - 10
+    const calculatedDelay = timeElapsed(startTime) // - 10
     span.style.animationDelay = `-${calculatedDelay}s`;
-    span.style.animationDirection = 'alternate-reverse';
+    span.style.animationDirection = animationDirection // 'alternate-reverse';
     span.style.animationPlayState = 'running';
 }
 
@@ -54,14 +63,29 @@ span.addEventListener('animationend', () => {
 });
 
 button.addEventListener('click', () => {
-    if(!isForward()) {
-        // replaceAnim()
-        // const elapsed = Date.now() - startTime;
-        // const delay = (elapsed < toMsecs(duration)) ? (toSecs(elapsed) - duration * 2) : -duration;
-        // toggleReverse(delay)
+    if(!isAlternate()) {
+        if(isPhase1()) {
+            console.log('ALTERNATE-REVERSE PHASE 1!')
+//            replaceAnim('alternate')
+            const elapsed = Date.now() - startTime;
+            const delay = (elapsed < toMsecs(duration)) ? (toSecs(elapsed) - duration * 2) : -duration;
+            toggleReverse(delay)
+        } else { // phase 2
+            console.log('ALTERNATE-REVERSE PHASE 2 TODO')
+            // is phase 2
+            // TODO: put back original anim
+            // TODO: then toggleReverse
+            replaceAnim('alternate')
+        }
     } else {
-        const elapsed = Date.now() - startTime;
-        const delay = (elapsed < toMsecs(duration)) ? (toSecs(elapsed) - duration * 2) : -duration;
-        toggleReverse(delay)
+        if(isPhase1()) {
+            console.log('ALTERNATE phase 1')
+            const elapsed = Date.now() - startTime;
+            const delay = (elapsed < toMsecs(duration)) ? (toSecs(elapsed) - duration * 2) : -duration;
+            toggleReverse(delay)
+        } else {
+            console.log('ALTERNATE phase 2')
+            replaceAnim('alternate-reverse')
+        }
     }
 });
